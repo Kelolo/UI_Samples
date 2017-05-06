@@ -14,12 +14,12 @@ public class MainThread extends Thread {
 	
 	public void run() {
 		tv.setText("");
-		while (!stop && counter < 100000000) {
-			if (counter % 10000 == 0){
+		while (!stop && counter < 10000000) {
+			if (counter % 1000 == 0){
 				tv.append(counter + "\n");
 			}
 			counter++;
-//			System.out.println(counter++);
+			System.out.println(counter++);
 		}
 		if (stop){
 			System.out.println("Detected stop");

@@ -98,8 +98,10 @@ public class UI {
 		dropListSP.getViewport().setView(dropTA);
 		panel.add(dropListSP);
 
-		JTextArea consoleTA = new JTextArea();
-		DefaultCaret caret = (DefaultCaret) consoleTA.getCaret(); // ¡û
+		JTextArea consoleTA = new JTextArea(40, 40);
+		
+		// move textview to the line
+		DefaultCaret caret = (DefaultCaret) consoleTA.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE); 
 //		TextAreaFIFO consoleTA = new TextAreaFIFO(1000);
 		//redirect sysout
@@ -205,9 +207,10 @@ public class UI {
 		
 	}
 	
+	
+	// redirect
 	public void redirectOutput(JTextArea textArea) {
 		PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
-	
 		System.setOut(printStream);
 		System.setErr(printStream);
 	}
