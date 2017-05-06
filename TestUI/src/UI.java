@@ -13,9 +13,11 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
@@ -32,12 +34,15 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.DropMode;
+import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 
 public class UI {
 
 	private JFrame frame;
 	private JFrame frameRule;
+	Image image;
 	MainThread mainTaskThread;
 
 	/**
@@ -68,8 +73,16 @@ public class UI {
 	 */
 	@SuppressWarnings("serial")
 	private void initialize() {
-		
 		frame = new JFrame();
+		String url = this.getClass().getResource("").getPath() + "icon.png";
+		
+		try {
+			image = ImageIO.read(new File(url));
+			frame.setIconImage(image);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		frame.setTitle("Testing Demo");
 		frame.setBounds(100, 100, 1062, 622);
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -179,6 +192,7 @@ public class UI {
 			public void actionPerformed(ActionEvent e) {
 				if (frameRule == null) {
 					frameRule = new JFrame();
+					frameRule.setIconImage(image);
 					frameRule.setTitle("Helps");
 					frameRule.setBounds(1162, 100, 500, 622);
 					frameRule.setVisible(true);
